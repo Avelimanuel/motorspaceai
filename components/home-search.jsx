@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import { Camera, Upload } from "lucide-react";
 import { Button } from "./ui/button";
 import { useDropzone } from "react-dropzone";
+import { toast } from "sonner";
 
 const HomeSearchComponent = () => {
   const [searchTerm, setsearchTerm] = useState("");
@@ -15,7 +16,30 @@ const HomeSearchComponent = () => {
   const handleAiImageSearch = () => {};
 
   const onDrop = (acceptedFiles) => {
-    // Do something with the files
+    const file = acceptedFiles[0];
+
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("File size must be less than 5MB");
+        return;
+      }
+      setIsImageUploading(true);
+      setSearchImage(file);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+        setIsImageUploading(false);
+        toast.success("Image uploaded successfully");
+      };
+
+      reader.onerror = () => {
+        setIsImageUploading(false);
+        toast.error("Failed to upload the image");
+      };
+
+      reader.readAsDataURL(file);
+    }
   };
   const { getRootProps, getInputProps, isDragActive, isDragReject } =
     useDropzone({
@@ -56,9 +80,26 @@ const HomeSearchComponent = () => {
       {imageSearchActive && (
         <div className="mt-4">
           <form onSubmit={handleAiImageSearch}>
-            <div>
+            <div className="border-2 border-dashed border-gray-300 rounded-3xl p-6 text-center">
               {imagePreview ? (
-                <div></div>
+                <div className="flex flex-col items-center">
+                  <img
+                    src={imagePreview}
+                    alt="Car image"
+                    className="h-40 object-contain mb-4"
+                  />
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setSearchImage(null);
+                      setImagePreview("");
+                      toast.info("Image removed");
+                    }}
+                    className="hover:bg-red-500"
+                  >
+                    Remove image
+                  </Button>
+                </div>
               ) : (
                 <div {...getRootProps()} className="cursor-pointer">
                   <input {...getInputProps()} />
@@ -72,10 +113,10 @@ const HomeSearchComponent = () => {
                   <div className="flex flex-col items-center">
                     <Upload className="h-12 w-12 text-gray-400 mb-2" />
 
-                    <p>
+                    <p className="text-white mb-2">
                       {isDragActive && !isDragReject
                         ? "Leave the file here to upload"
-                        : "Drag & drop a car image or click to select"}
+                        : "Drag & drop a car image or click to here select"}
                     </p>
                     {isDragReject && (
                       <p className="text-red-500 mb-2">Invalid image type</p>
