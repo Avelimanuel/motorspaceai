@@ -60,7 +60,7 @@ const HomeSearchComponent = () => {
               {imagePreview ? (
                 <div></div>
               ) : (
-                <div {...getRootProps()}>
+                <div {...getRootProps()} className="cursor-pointer">
                   <input {...getInputProps()} />
                   {/* {isDragActive ? (
                     <p>Drop the files here ...</p>
