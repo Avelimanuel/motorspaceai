@@ -1,7 +1,14 @@
 import CarCardComponent from "@/components/CarCard";
 import HomeSearchComponent from "@/components/home-search";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 import { Button } from "@/components/ui/button";
-import { carMakes, featuredCars } from "@/lib/vehicledata";
+import { carMakes, FAQ, featuredCars } from "@/lib/vehicledata";
 import { Calendar, Car, ChevronRight, Shield } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -103,7 +110,7 @@ export default function Home() {
           </div>
           <div className="text-center p-4">
             <div className="bg-blue-100 text-blue-700 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-              <Calendar className="w-8 h-8"/>
+              <Calendar className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-bold mb-2">Easy test drive booking</h3>
             <p className="text-gray-600">
@@ -112,13 +119,39 @@ export default function Home() {
           </div>
           <div className="text-center p-4">
             <div className="bg-blue-100 text-blue-700 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-8 h-8"/>
+              <Shield className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-bold mb-2">Secure process</h3>
             <p className="text-gray-600">
-              Verified car listings and secure booking & purchasing process for peace of mind.
+              Verified car listings and secure booking & purchasing process for
+              peace of mind.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50 w-full">
+        <div className="w-full px-4 sm:px-8 md:px-16">
+          <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-10 underline decoration-indigo-500 underline-offset-4">
+            Frequently Asked Questions
+          </h2>
+
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {FAQ.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="border border-gray-200 rounded-lg shadow-sm w-full"
+              >
+                <AccordionTrigger className="text-lg font-medium text-gray-700 px-4 py-3 hover:bg-gray-100 transition rounded-t-lg w-full text-left">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-4 py-3 text-gray-600 bg-white rounded-b-lg">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </div>
