@@ -69,17 +69,21 @@ const HomeSearchComponent = () => {
                       Drag 'n' drop some files here, or click to select files
                     </p>
                   )} */}
-                  <Upload className="h-12 w-12 text-gray-400 mb-2"/>
+                  <div className="flex flex-col items-center">
+                    <Upload className="h-12 w-12 text-gray-400 mb-2" />
 
-                  <p>
-                    {isDragActive && !isDragReject
-                      ? "Leave the file here to upload"
-                      : "Drag & drop a car image or click to select"}
-                  </p>
-                  {isDragReject && (
-                    <p className="text-red-500 mb-2">Invalid image type</p>
-                  )}
-                  <p className="text-gray-400">Supports:JPG,JPEG,PNG (max 5MB)</p>
+                    <p>
+                      {isDragActive && !isDragReject
+                        ? "Leave the file here to upload"
+                        : "Drag & drop a car image or click to select"}
+                    </p>
+                    {isDragReject && (
+                      <p className="text-red-500 mb-2">Invalid image type</p>
+                    )}
+                    <p className="text-gray-400">
+                      Supports:JPG,JPEG,PNG (max 5MB)
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
