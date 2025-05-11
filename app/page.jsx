@@ -9,6 +9,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { carMakes, FAQ, featuredCars } from "@/lib/vehicledata";
+import { SignedOut } from "@clerk/nextjs";
 import { Calendar, Car, ChevronRight, Shield } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -130,7 +131,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50 w-full">
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-gray-200 w-full">
         <div className="w-full px-4 sm:px-8 md:px-16">
           <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-10 underline decoration-indigo-500 underline-offset-4">
             Frequently Asked Questions
@@ -152,6 +153,24 @@ export default function Home() {
               </AccordionItem>
             ))}
           </Accordion>
+        </div>
+      </section>
+      <section className="py-16 dotted-background text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="mb-4 text-3xl font-bold">Ready to drive Your Dream Car?</h2>
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Join thousands of satisfied customers who found their dream car through our platform</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button size="lg" variant="secondary" asChild>
+              <Link href="/cars">View all cars</Link>
+            </Button>
+            <SignedOut>
+              <Button size="lg" asChild>
+                <Link href="/sign-up">Sign up now</Link>
+
+              </Button>
+            </SignedOut>
+
+          </div>
         </div>
       </section>
     </div>
