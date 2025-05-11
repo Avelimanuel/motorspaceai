@@ -157,8 +157,13 @@ export default function Home() {
       </section>
       <section className="py-16 dotted-background text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-4 text-3xl font-bold">Ready to drive Your Dream Car?</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Join thousands of satisfied customers who found their dream car through our platform</p>
+          <h2 className="mb-4 text-3xl font-bold">
+            Ready to drive Your Dream Car?
+          </h2>
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            Join thousands of satisfied customers who found their dream car
+            through our platform
+          </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button size="lg" variant="secondary" asChild>
               <Link href="/cars">View all cars</Link>
@@ -166,10 +171,8 @@ export default function Home() {
             <SignedOut>
               <Button size="lg" asChild>
                 <Link href="/sign-up">Sign up now</Link>
-
               </Button>
             </SignedOut>
-
           </div>
         </div>
       </section>
