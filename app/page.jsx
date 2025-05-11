@@ -1,8 +1,10 @@
 import CarCardComponent from "@/components/CarCard";
 import HomeSearchComponent from "@/components/home-search";
 import { Button } from "@/components/ui/button";
-import { featuredCars } from "@/lib/vehicledata";
+import { carMakes, featuredCars } from "@/lib/vehicledata";
 import { ChevronRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -25,14 +27,14 @@ export default function Home() {
       </section>
 
       {/* Featured Cars */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
               Featured Cars
             </h2>
             <Button className="flex items-center gap-1">
-              View All
+              <Link href="/allcars">View All</Link>
               <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
@@ -41,6 +43,41 @@ export default function Home() {
             {featuredCars.map((car) => (
               <CarCardComponent key={car.id} car={car} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Browse by make section */}
+      <section className="py-12 bg-gray-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+              Browse By Make
+            </h2>
+            <Button className="flex items-center gap-1">
+              <Link href="/allcars">View All</Link>
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+            {carMakes.map((make) => {
+              return(
+              <Link
+                key={make.name}
+                href={`/cars?make=${make.name}`}
+                className="bg-white rounded-lg p-4 text-center shadow hover:shadow-md transition cursor-pointer"
+              >
+                <div className="h-16 w-auto  relative mb-2">
+                  <Image
+                    src={make.image}
+                    alt={make.name}
+                    fill
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
+              </Link>)
+            })}
           </div>
         </div>
       </section>
