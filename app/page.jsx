@@ -2,7 +2,7 @@ import CarCardComponent from "@/components/CarCard";
 import HomeSearchComponent from "@/components/home-search";
 import { Button } from "@/components/ui/button";
 import { carMakes, featuredCars } from "@/lib/vehicledata";
-import { ChevronRight } from "lucide-react";
+import { Calendar, Car, ChevronRight, Shield } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -62,22 +62,62 @@ export default function Home() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
             {carMakes.map((make) => {
-              return(
-              <Link
-                key={make.name}
-                href={`/cars?make=${make.name}`}
-                className="bg-white rounded-lg p-4 text-center shadow hover:shadow-md transition cursor-pointer"
-              >
-                <div className="h-16 w-auto  relative mb-2">
-                  <Image
-                    src={make.image}
-                    alt={make.name}
-                    fill
-                    style={{ objectFit: "contain" }}
-                  />
-                </div>
-              </Link>)
+              return (
+                <Link
+                  key={make.name}
+                  href={`/cars?make=${make.name}`}
+                  className="bg-white rounded-lg p-4 text-center shadow hover:shadow-md transition cursor-pointer"
+                >
+                  <div className="h-16 w-auto  relative mb-2">
+                    <Image
+                      src={make.image}
+                      alt={make.name}
+                      fill
+                      style={{ objectFit: "contain" }}
+                    />
+                  </div>
+                </Link>
+              );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why choose us section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-12 underline">
+            Why choose us
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center p-4">
+            <div className="bg-blue-100 text-blue-700 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <Car className="h-8 w-8" />
+            </div>
+            <h3 className="text-xl font-bold mb-2">Wide Selection</h3>
+            <p className="text-gray-600">
+              We are a trusted dealership and verified supplier of both use &
+              new cars in Kenya
+            </p>
+          </div>
+          <div className="text-center p-4">
+            <div className="bg-blue-100 text-blue-700 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <Calendar className="w-8 h-8"/>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Easy test drive booking</h3>
+            <p className="text-gray-600">
+              Book a test drive online with flexible scheduling options.
+            </p>
+          </div>
+          <div className="text-center p-4">
+            <div className="bg-blue-100 text-blue-700 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <Shield className="w-8 h-8"/>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Secure process</h3>
+            <p className="text-gray-600">
+              Verified car listings and secure booking & purchasing process for peace of mind.
+            </p>
           </div>
         </div>
       </section>
